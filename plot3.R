@@ -7,6 +7,7 @@ if (!file.exists('./data'))
 
 url <- 'https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip'
 download.file(url,destfile = './data/data.zip',method = 'curl')
+rm(url)
 
 #Unzip data
 if (!file.exists('./data/household_power_consumption.txt'))
@@ -23,9 +24,16 @@ subdata <- subset(data,Date == '2007-02-01' | Date == '2007-02-02')
 rm(data)
 
 #Plotting
-png(filename = 'plot2.png',bg= 'transparent', width=480, height=480)
-plot(as.numeric(subdata$Global_active_power)~subdata$DateTime,xlab = "",
-     ylab = 'Global Active Power (kilowatts)',type='l')
-mtext(title('Plot 2'))
+png(filename = 'plot3.png',bg= 'transparent', width=480, height=480)
+
+plot(as.numeric(subdata$Sub_metering_1)~subdata$DateTime,xlab = "",
+     ylab = 'Energy sub metering',type='l',col= 'black')
+points(as.numeric(subdata$Sub_metering_2)~subdata$DateTime,xlab = "",
+     ylab = 'Energy sub metering',type='l',col= 'red')
+points(as.numeric(subdata$Sub_metering_3)~subdata$DateTime,xlab = "",
+       ylab = 'Energy sub metering',type='l',col= 'blue')
+legend('topright',legend = c('Sub_metering_1','Sub_metering_2','Sub_metering_3')
+       ,pch = '_',col = c('black','red','blue'))
+mtext(title('Plot 3'))
 
 dev.off()
