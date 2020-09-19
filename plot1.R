@@ -7,6 +7,7 @@ if (!file.exists('./data'))
 
 url <- 'https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip'
 download.file(url,destfile = './data/data.zip',method = 'curl')
+rm(url)
 
 #Unzip data
 if (!file.exists('./data/household_power_consumption.txt'))
@@ -16,10 +17,11 @@ if (!file.exists('./data/household_power_consumption.txt'))
 data <- read.csv('./data/household_power_consumption.txt',sep=';')
 
 data$Date <- as.Date(data$Date,'%d/%m/%Y')
-data$Time <- as.POSIXlt(data$Time,'%H:%M:%S')
 
-#Subsetting
+
+#Subsetting 
 subdata <- subset(data,Date == '2007-02-01' | Date == '2007-02-02')
+rm(data)
 
 #Plotting
 png(filename = 'plot1.png',bg= 'transparent', width=480, height=480)
