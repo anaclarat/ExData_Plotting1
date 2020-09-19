@@ -24,9 +24,9 @@ subdata <- subset(data,Date == '2007-02-01' | Date == '2007-02-02')
 rm(data)
 
 #Plotting
-#png(filename = 'plot2.png',bg= 'transparent', width=480, height=480)
+png(filename = 'plot2.png',bg= 'transparent', width=480, height=480)
 plot(as.numeric(subdata$Global_active_power)~subdata$DateTime,xlab = "",
      ylab = 'Global Active Power (kilowatts)',type='l')
 mtext(title('Plot 2'))
 
-#dev.off()
+dev.off()
