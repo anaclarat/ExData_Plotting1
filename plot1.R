@@ -25,8 +25,10 @@ rm(data)
 
 #Plotting
 png(filename = 'plot1.png',bg= 'transparent', width=480, height=480)
+par(mfrow = c(2,2),mar= c(4,4,2,1),oma=c(6,6,4,2))
 
 hist(as.numeric(subdata$Global_active_power),col = 'red',ylab = 'Frequency',
      xlab = 'Global Active Power (kilowatts)',main = 'Global Active Power')
+mtext('Plot 1',outer = TRUE)
 
 dev.off()
